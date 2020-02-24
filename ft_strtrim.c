@@ -36,7 +36,7 @@ char	*ft_strtrim(char const *s)
 */
 		int		i;
 	int		len;
-	char	*str;
+	char	*copy;
 
 	if (s == NULL)
 		return (NULL);
@@ -48,13 +48,9 @@ char	*ft_strtrim(char const *s)
 		len--;
 	if (len <= 0)
 		len = 0;
-	str = (char*)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
+	if (!(copy = (char*)malloc(sizeof(char) * (len + 1)))
 		return (NULL);
-	s += i;
-	i = -1;
-	while (++i < len)
-		str[i] = *s++;
-	str[i] = '\0';
-	return (str);
+	ft_strncpy(copy, (char*)s + i, len);
+	copy[i] = '\0';
+	return (copy);
 }
