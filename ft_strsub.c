@@ -30,22 +30,22 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	}
 	return (str);
 	*/
-		char	*result;
+		char	*str;
 	size_t	i;
 
 	if (s == NULL)
 		return (NULL);
 	if (start > ft_strlen(s))
 		return (NULL);
-	if ((result = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
+	if (!(str = (char *)malloc((len + 1))))
 		return (NULL);
 	i = 0;
-	while (i < len && s[start] != '\0')
+	while (i < len && s[start])
 	{
-		result[i] = s[start];
+		str[i] = s[start];
 		start++;
 		i++;
 	}
-	result[i] = '\0';
-	return (result);
+	str[i] = '\0';
+	return (str);
 }
