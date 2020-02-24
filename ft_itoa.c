@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include "libft.h"
 /*
 static int		length(int n)
 {
@@ -57,7 +58,7 @@ char			*ft_itoa(int n)
 	return (s);
 }
 */
-void	itoa_isnegative(int *n, int *negative)
+static void	itoa_isnegative(int *n, int *negative)
 {
 	if (*n < 0)
 	{
