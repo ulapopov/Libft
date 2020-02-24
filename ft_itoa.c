@@ -58,40 +58,40 @@ char			*ft_itoa(int n)
 	return (s);
 }
 */
-static void	itoa_isnegative(int *n, int *negative)
+static int	isnegative(int *n)
 {
 	if (*n < 0)
 	{
-		*n *= -1;
-		*negative = 1;
+		*n = -(*n);
+		return (1);
 	}
+	return (0);
 }
 
 char	*ft_itoa(int n)
 {
-	int		tmpn;
+	int		tmp;
 	int		len;
 	int		negative;
-	char	*str;
+	char	*s;
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	tmpn = n;
+	tmp = n;
 	len = 2;
-	negative = 0;
-	itoa_isnegative(&n, &negative);
-	while (tmpn /= 10)
+	negative = isnegative(&n);
+	while (tmp /= 10)
 		len++;
 	len += negative;
-	if ((str = (char*)malloc(sizeof(char) * len)) == NULL)
+	if ((s = (char*)malloc(sizeof(char) * len)) == NULL)
 		return (NULL);
-	str[--len] = '\0';
+	s[--len] = '\0';
 	while (len--)
 	{
-		str[len] = n % 10 + '0';
+		s[len] = n % 10 + '0';
 		n = n / 10;
 	}
 	if (negative)
-		str[0] = '-';
-	return (str);
+		s[0] = '-';
+	return (s);
 }
