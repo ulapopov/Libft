@@ -57,7 +57,7 @@ char			**ft_strsplit(char const *s, char c)
 	return (arr);
 }
 */
-static int		ft_nbw(const char *str, char c)
+static int		word_count(const char *str, char c)
 {
 	int word;
 
@@ -80,44 +80,43 @@ static int		ft_nbw(const char *str, char c)
 	return (word);
 }
 
-static int		ft_ln(const char *str, char c)
+static int		length(const char *str, char c)
 {
-	int count;
+	int i;
 
-	count = 0;
+	i = 0;
 	while (*str != c && *str)
 	{
-		count++;
+		i++;
 		str++;
 	}
-	return (count);
+	return (i);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
 	int		j;
 	int		i;
-	char	**spt;
+	char	**arr;
 
 	j = 0;
-	i = 0;
-	if (!s || (!(spt = (char **)malloc(sizeof(char *) * (ft_nbw(s, c) + 1)))))
+	if (!s || (!(arr = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1)))))
 		return (NULL);
 	while (*s)
 	{
 		while (*s == c && *s)
 			s++;
+		i = 0;
 		if (*s != c && *s)
 		{
-			if (!(spt[j] = (char *)malloc(sizeof(char) * (ft_ln(s, c) + 1))))
+			if (!(arr[j] = (char *)malloc(length(s, c) + 1)))
 				return (NULL);
 			while (*s && *s != c)
-				spt[j][i++] = (char)*s++;
-			spt[j][i] = '\0';
+				arr[j][i++] = (char)*s++;
+			arr[j][i] = '\0';
 			j++;
-			i = 0;
 		}
 	}
-	spt[j] = NULL;
-	return (spt);
+	arr[j] = NULL;
+	return (arr);
 }
