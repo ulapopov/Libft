@@ -22,10 +22,10 @@ HEADERS = *.h
 
 all: $(NAME)
 
-$(NAME): $(FILES) $(HEADERS)
-	@$(CC) $(CFLAGS) -I$(HEADERS) -c $(FILES)
-	@ar rc $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
+$(NAME):
+	$(CC) $(CFLAGS) -I$(HEADERS) -c $(FILES)
+	ar rc $(NAME) $(OBJECTS)
+	ranlib $(NAME)
 
 clean:
 	/bin/rm -f $(OBJECTS)
