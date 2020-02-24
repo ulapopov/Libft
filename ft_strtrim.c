@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: upopov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/20 17:58:04 by upopov            #+#    #+#             */
+/*   Updated: 2020/02/23 21:40:18 by upopov           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
+
+char	*ft_strtrim(char const *s)
+{
+	int		i;
+	char	*copy;
+	int		len;
+	int		size;
+
+	len = ft_strlen(s);
+	i = 0;
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	while (s[len] == ' ' || s[len] == '\n' || s[len] == '\t')
+		len--;
+	size = len - i;
+	if (!(copy = ft_memalloc((size_t)(size + 1))))
+		return (NULL);
+	ft_strncpy(copy, (char*)s + i, size);
+	copy[size] = '\0';
+	return (copy);
+}
