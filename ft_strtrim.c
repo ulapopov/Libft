@@ -55,23 +55,23 @@ char	*ft_strtrim(char const *s)
 	copy[i] = '\0';
 	return (copy);
 	*/
-			int		i;
-	int		len;
+		int		i;
 	char	*copy;
+	int		len;
 
 	if (s == NULL)
 		return (NULL);
 	len = ft_strlen(s);
-	while (s[len - 1] == ' ' || s[len - 1] == '\t' || s[len - 1] == '\n')
+	i = 0;
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	while (s[len - 1] == ' ' || s[len - 1] == '\n' || s[len - 1] == '\t')
 		len--;
-	i = -1;
-	while (s[++i] == ' ' || s[i] == '\t' || s[i] == '\n')
-		len--;
-	if (len <= 0)
-		len = 0;
-	if (!(copy = (char*)malloc(sizeof(char) * (len + 1)))
+	len = len - i;
+	if (!(copy = (char*)malloc((len + 1))))
 		return (NULL);
 	ft_strncpy(copy, (char*)s + i, len);
-	copy[i] = '\0';
+	copy[len] = '\0';
 	return (copy);
+
 }
