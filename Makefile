@@ -23,7 +23,7 @@ HEADERS = *.h
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -I$(HEADERS) -c $(FILES)
+	$(CC) $(CFLAGS) -I $(HEADERS) -c $(FILES)
 	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
 
